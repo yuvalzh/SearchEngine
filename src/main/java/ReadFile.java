@@ -14,15 +14,15 @@ public class ReadFile {
 
     protected File MainPath;
     public ArrayList<File> SubFilesPath;
-    static public HashSet<MyDocument> Docs;
+    public HashMap<String,DocDetailes> Docs; //<DocId,DocDetailes>  sent to parser!!
     public StringBuilder stb;
 
 
     public void ReadFile(){ }
 
-    public HashSet<MyDocument> ReadAllDocs(String path) throws IOException {
+    public HashMap<String,DocDetailes> ReadAllDocs(String path) throws IOException {
         this.MainPath= new File(path);
-        Docs = new HashSet<>();
+        Docs = new HashMap<>();
         SubFilesPath = new ArrayList<File>();
         if(MainPath.isDirectory() && MainPath != null) {
             ProccessSubFilesDirectories(MainPath.getAbsolutePath());
@@ -58,16 +58,16 @@ public class ReadFile {
                 Elements elements = d.getElementsByTag("DOC");
                 for (Element element : elements){
                     String DocID = element.getElementsByTag("DOCNO").text();
+                    String DocText = element.getElementsByTag("TEXT").text();
                     String DocDate = element.getElementsByTag("DATE1").text();
                     String DocTitle = element.getElementsByTag("TI").text();
-                    String DocText = element.getElementsByTag("TEXT").text();
-                    String DocCity = element.getElementsByTag("<FP=104>").text();
-                    String DocDirectory = f.getAbsolutePath();
-                    MyDocument tmp = new MyDocument(DocID,DocDirectory,DocDate,DocTitle,DocText,DocCity);
-                    Docs.add(tmp);
+                    String DocCity = element.getElementsByTag("F").toString();
+                    // needed to handle to find city , and change it ti big letters!!
+                    Docs.put(DocID,new DocDetailes(DocText,DocDate,DocTitle,DocCity));
                 }
             }
         }
     }
-
 }
+
+

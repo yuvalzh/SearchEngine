@@ -1,23 +1,24 @@
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
+import javafx.util.Pair;
 import java.util.HashMap;
 
 public class Indexer {
 
-    public HashMap<String,String> Posting;
-    public static HashMap <String,String> Cache;
-    public static HashMap<String, String> Dictionary;
-    //public HashMap <String, Pair<Integer, Pair <String, Integer>>> docs;
-
+    public HashMap<String,DictionaryDetailes> Dictionary; //<Term,DictionaryDetailes>
+    public HashMap<String,PostingDetailes> Posting; //<DocId,PostingDetailes>
+    public HashMap<String,PostingDetailes> Cache; //<DocId,PostingDetailes>
+    public HashMap<String,DocDetailes> Docs;       //<DocId,DocDetailes>
 
 
     public Indexer(){
+        Dictionary = new HashMap<>();
         Posting = new HashMap<>();
         Cache = new HashMap<>();
-        Dictionary = new HashMap<>();
     }
 
 
-    public void CreateIndexer(HashMap<String,Term> CorpusAfterParse){
+    public void CreateIndexer(HashMap<String,HashSet<String>> CorpusAfterParse){  // <Term ,HashSet<DocID>>
 
 
 

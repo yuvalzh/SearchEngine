@@ -6,10 +6,10 @@ public class SearchEngine {
     public String CorpusPath;
     public String StopWordsPath;
     boolean StemmerNeeded;
-    public HashSet<MyDocument> Docs;
-    public HashMap<Term ,String> Terms;
-    //public static HashMap<String, String> Dictionary;
-    //public HashMap<String,String> Posting;
+    public HashMap<String,DocDetailes> Docs;
+    public static HashMap<String,HashSet<String>> Terms;
+
+
 
 
 
@@ -17,13 +17,13 @@ public class SearchEngine {
         CorpusPath = corpusPath;
         StopWordsPath = stopWordsPath;
         StemmerNeeded = Steemer;
-        //Docs = new HashSet<>();
+        Docs = new HashMap<>();
         ReadFile readFile = new ReadFile();
         Docs = readFile.ReadAllDocs(CorpusPath);
         Parse parse = new Parse();
         Terms = parse.ParseCorpus(Docs,StemmerNeeded,StopWordsPath);
-        //Indexer indexer = new Indexer();
-        //indexer.CreateIndexer();
+        // Indexer indexer = new Indexer();
+        // indexer.CreateIndexer(Terms);
     }
 
 }
