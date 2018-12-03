@@ -10,6 +10,10 @@
           <option name="url" value="https://github.com/adamCo1/bina1.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/yardenGoldy/SearchEngine.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\yuviz\Downloads\Programming Assignment 1" />
